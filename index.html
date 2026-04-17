@@ -1,27 +1,425 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AlphaQubit: Quantum Error Decoding</title>
-    <script type="importmap">
-{
-  "imports": {
-    "react": "https://esm.sh/react@^19.2.0",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.0/",
-    "react/": "https://esm.sh/react@^19.2.0/",
-    "@react-three/fiber": "https://esm.sh/@react-three/fiber@^9.4.0",
-    "@react-three/drei": "https://esm.sh/@react-three/drei@^10.7.7",
-    "three": "https://esm.sh/three@^0.181.1",
-    "framer-motion": "https://esm.sh/framer-motion@^12.23.24",
-    "lucide-react": "https://esm.sh/lucide-react@^0.553.0"
-  }
-}
-</script>
-<link rel="stylesheet" href="/index.css">
+    <title>Samanwaya Nepal | Strengthening Democracy</title>
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
 </head>
-  <body>
-    <div id="root"></div>
-  <script type="module" src="/index.tsx"></script>
+<body class="bg-cream text-text-main font-sans selection:bg-accent-green selection:text-white overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent py-6">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center gap-4 cursor-pointer" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">
+                <div class="w-10 h-10 bg-primary-green rounded-xl flex items-center justify-center text-white shadow-sm overflow-hidden transform rotate-3">
+                    <span class="font-serif font-bold text-2xl pb-1 -rotate-3">S</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="navbar-logo font-serif font-bold text-lg leading-tight tracking-wide opacity-0 md:opacity-100 transition-opacity">
+                        SAMANWAYA <span class="font-normal text-primary-green/60">NEPAL</span>
+                    </span>
+                    <span class="navbar-logo-np text-[10px] font-bold tracking-tighter uppercase opacity-0 transition-opacity hidden md:block">
+                        समन्वय नेपाल
+                    </span>
+                </div>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-8 text-xs font-bold tracking-widest text-text-main/80 uppercase">
+                <a href="#about" class="nav-link hover:text-accent-green transition-colors">About</a>
+                <a href="#pillars" class="nav-link hover:text-accent-green transition-colors">Our Work</a>
+                <a href="#events" class="nav-link hover:text-accent-green transition-colors">Events</a>
+                <a href="#representation" class="nav-link hover:text-accent-green transition-colors">Impact</a>
+                <a href="#team" class="nav-link hover:text-accent-green transition-colors">Leadership</a>
+                
+                <div class="h-4 w-[1px] bg-text-main/10 mx-2"></div>
+                
+                <div class="flex items-center gap-4">
+                    <a href="https://x.com/samanwaya_np" target="_blank" class="text-text-main hover:text-accent-green transition-colors"><i data-lucide="twitter" class="w-[18px]"></i></a>
+                    <a href="https://www.linkedin.com/company/samanwaya" target="_blank" class="text-text-main hover:text-accent-green transition-colors"><i data-lucide="linkedin" class="w-[18px]"></i></a>
+                </div>
+
+                <a href="#contact" class="ml-4 px-6 py-2.5 bg-primary-green text-white rounded-full hover:bg-accent-green transition-all shadow-sm">
+                    Get Involved
+                </a>
+            </div>
+
+            <button id="menu-toggle" class="md:hidden text-primary-green p-2">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 z-40 bg-cream flex flex-col items-center justify-center gap-8 text-xl font-serif hidden p-6 text-center">
+        <a href="#about" class="mobile-nav-link hover:text-accent-green transition-colors uppercase font-bold tracking-widest text-sm">About</a>
+        <a href="#pillars" class="mobile-nav-link hover:text-accent-green transition-colors uppercase font-bold tracking-widest text-sm">Our Work</a>
+        <a href="#events" class="mobile-nav-link hover:text-accent-green transition-colors uppercase font-bold tracking-widest text-sm">Events</a>
+        <a href="#representation" class="mobile-nav-link hover:text-accent-green transition-colors uppercase font-bold tracking-widest text-sm">Impact</a>
+        <a href="#team" class="mobile-nav-link hover:text-accent-green transition-colors uppercase font-bold tracking-widest text-sm">Leadership</a>
+        
+        <div class="flex gap-8 my-4">
+            <a href="https://x.com/samanwaya_np" target="_blank" class="text-primary-green"><i data-lucide="twitter" class="w-6 h-6"></i></a>
+            <a href="https://www.linkedin.com/company/samanwaya" target="_blank" class="text-primary-green"><i data-lucide="linkedin" class="w-6 h-6"></i></a>
+            <a href="https://www.instagram.com/samanwaya.np/" target="_blank" class="text-primary-green"><i data-lucide="instagram" class="w-6 h-6"></i></a>
+        </div>
+
+        <a href="#contact" class="px-8 py-4 bg-primary-green text-white rounded-full shadow-lg text-sm font-bold uppercase tracking-widest">
+            Get Involved
+        </a>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div id="hero-scene" class="absolute inset-0 z-0 opacity-40 pointer-events-none"></div>
+        
+        <div class="absolute inset-0 z-0 pointer-events-none bg-[radial-gradient(circle_at_center,rgba(253,251,247,0.8)_0%,rgba(253,251,247,0.4)_50%,rgba(253,251,247,0.2)_100%)]"></div>
+
+        <div class="relative z-10 container mx-auto px-6 text-center">
+            <div class="reveal-fade-up inline-flex items-center gap-2 mb-6 px-4 py-1.5 border border-primary-green/20 text-primary-green text-[10px] tracking-[0.3em] uppercase font-black rounded-full backdrop-blur-md bg-white/40">
+                <i data-lucide="globe" class="w-3 h-3"></i> Established in Nepal
+            </div>
+            <h1 class="reveal-fade-up font-serif text-5xl md:text-8xl lg:text-[10rem] font-medium leading-[0.85] mb-8 text-primary-green drop-shadow-sm">
+                Samanwaya <br/><span class="italic font-normal text-accent-green text-3xl md:text-5xl lg:text-6xl block mt-4">Coordinating for a Stronger Democracy.</span>
+            </h1>
+            <p class="reveal-fade-up max-w-3xl mx-auto text-lg md:text-2xl text-text-main/80 font-light leading-relaxed mb-12">
+                Strengthening democratic processes and political coordination. Empowering the next generation of civic changemakers.
+            </p>
+            
+            <div class="reveal-fade-up flex justify-center">
+                <a href="#about" class="group flex flex-col items-center gap-4 text-xs font-bold tracking-[0.2em] text-text-main/40 hover:text-primary-green transition-all">
+                    <span>OUR MISSION</span>
+                    <span class="p-3 border border-primary-green/10 rounded-full group-hover:border-primary-green/40 group-hover:bg-white transition-all shadow-sm">
+                        <i data-lucide="arrow-down" class="w-[18px]"></i>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- About Section -->
+        <section id="about" class="py-32 bg-white relative overflow-hidden">
+            <div class="container mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+                <div class="lg:col-span-5 reveal-fade-left">
+                    <div class="mb-12">
+                        <div class="inline-block mb-3 text-xs font-bold tracking-widest uppercase text-text-main/50">Who We Are</div>
+                        <h2 class="font-serif text-4xl md:text-5xl leading-tight text-primary-green">Nurturing Political Leaders</h2>
+                        <div class="w-16 h-1 bg-accent-green mt-6"></div>
+                    </div>
+                    <p class="text-xl text-text-main leading-relaxed mb-8 italic border-l-4 border-accent-green pl-6 py-2">
+                        Samanwaya Nepal (समन्वय नेपाल) is a profit non-distributing organization dedicated to strengthening democratic processes across Nepal.
+                    </p>
+                </div>
+                <div class="lg:col-span-7 text-lg text-text-main/80 leading-relaxed space-y-8 reveal-fade-right">
+                    <p>
+                        As a <strong>youth-run and led organization</strong>, we focus on fostering democratic engagement and providing a platform to address governance challenges at both national and local levels. We believe that coordination is the key to a more inclusive and representative democracy.
+                    </p>
+                    <p>
+                        Our work is rooted in the belief that meaningful participation of youth, women, and children is not just an aspiration but a necessity for a vibrant political ecosystem. By developing critical coordination skills, we prepare today's youth for tomorrow's leadership roles.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 pt-8 text-left">
+                        <div class="flex items-start gap-4">
+                            <div class="p-3 bg-cream rounded-xl text-accent-green"><i data-lucide="users" class="w-6 h-6"></i></div>
+                            <div>
+                                <h4 class="font-serif text-xl text-primary-green mb-1 text-left">Democratic Synergy</h4>
+                                <p class="text-sm">Fostering collaboration between citizens and governance structures.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="p-3 bg-cream rounded-xl text-accent-green"><i data-lucide="target" class="w-6 h-6"></i></div>
+                            <div>
+                                <h4 class="font-serif text-xl text-primary-green mb-1 text-left">Political Coordination</h4>
+                                <p class="text-sm">Bridging the gap between diverse political stakeholders for collective progress.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pillars Section -->
+        <section id="pillars" class="py-32 bg-cream">
+            <div class="container mx-auto px-6 text-center max-w-4xl mb-20 reveal-fade-up">
+                <div class="mb-12">
+                    <div class="inline-block mb-3 text-xs font-bold tracking-widest uppercase text-text-main/50">Our Core Work</div>
+                    <h2 class="font-serif text-4xl md:text-5xl leading-tight text-primary-green">The Pillars of Empowerment</h2>
+                    <div class="w-16 h-1 bg-accent-green mt-6 mx-auto"></div>
+                </div>
+                <p class="text-lg text-text-main/70">We drive change by focusing on three critical demographics, ensuring their voices resonate in the halls of power.</p>
+            </div>
+            <div class="container mx-auto px-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="reveal-fade-up p-10 bg-white rounded-3xl border border-accent-green/10 shadow-sm hover:shadow-xl transition-all group">
+                        <div class="w-16 h-16 bg-cream rounded-2xl flex items-center justify-center text-primary-green mb-8 group-hover:bg-primary-green group-hover:text-white transition-all transform group-hover:-rotate-3">
+                            <i data-lucide="rocket" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-serif text-2xl text-primary-green mb-4">Youth Leadership</h3>
+                        <p class="text-text-main/60 leading-relaxed italic text-left">Nurturing civic changemakers by providing tools for political coordination and leadership development.</p>
+                    </div>
+                    <div class="reveal-fade-up p-10 bg-white rounded-3xl border border-accent-green/10 shadow-sm hover:shadow-xl transition-all group" style="transition-delay: 0.1s">
+                        <div class="w-16 h-16 bg-cream rounded-2xl flex items-center justify-center text-primary-green mb-8 group-hover:bg-primary-green group-hover:text-white transition-all transform group-hover:-rotate-3">
+                            <i data-lucide="users" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-serif text-2xl text-primary-green mb-4">Women in Governance</h3>
+                        <p class="text-text-main/60 leading-relaxed italic text-left">Advocating for meaningful representation and equal participation in every level of decision-making.</p>
+                    </div>
+                    <div class="reveal-fade-up p-10 bg-white rounded-3xl border border-accent-green/10 shadow-sm hover:shadow-xl transition-all group" style="transition-delay: 0.2s">
+                        <div class="w-16 h-16 bg-cream rounded-2xl flex items-center justify-center text-primary-green mb-8 group-hover:bg-primary-green group-hover:text-white transition-all transform group-hover:-rotate-3">
+                            <i data-lucide="globe" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-serif text-2xl text-primary-green mb-4">Child Representation</h3>
+                        <p class="text-text-main/60 leading-relaxed italic text-left">Ensuring the safety, rights, and inclusion of children's perspectives in community governance.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Events Section -->
+        <section id="events" class="py-32 bg-white overflow-hidden">
+            <div class="container mx-auto px-6 mb-20">
+                <div class="flex flex-col md:flex-row justify-between items-end gap-8">
+                    <div class="reveal-fade-left">
+                        <div class="inline-block mb-3 text-xs font-bold tracking-widest uppercase text-text-main/50">Stay Informed</div>
+                        <h2 class="font-serif text-4xl md:text-5xl leading-tight text-primary-green">Upcoming Events</h2>
+                        <div class="w-16 h-1 bg-accent-green mt-6"></div>
+                    </div>
+                    <div class="reveal-fade-right">
+                         <p class="text-text-main/60 max-w-sm mb-4">Join us in our journey towards a stronger democracy. Participate in our workshops, dialogues, and community programs.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="events-grid" class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Events will be loaded here from Firebase -->
+                <div class="animate-pulse bg-cream h-96 rounded-3xl"></div>
+                <div class="animate-pulse bg-cream h-96 rounded-3xl invisible md:visible"></div>
+                <div class="animate-pulse bg-cream h-96 rounded-3xl invisible lg:visible"></div>
+            </div>
+        </section>
+
+        <!-- Impact Section -->
+        <section id="representation" class="py-32 bg-primary-green text-cream overflow-hidden relative">
+            <div class="absolute inset-0 opacity-5 pointer-events-none">
+                <div class="w-full h-full bg-[radial-gradient(circle_at_20%_30%,#40916C_0%,transparent_50%)]"></div>
+            </div>
+
+            <div class="container mx-auto px-6 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                    <div class="reveal-fade-left order-2 lg:order-1">
+                        <div id="impact-chart" class="w-full bg-white/5 backdrop-blur-md rounded-3xl p-8 border border-white/10 h-[450px] flex flex-col items-center justify-center">
+                            <!-- Chart will be rendered here with D3 -->
+                        </div>
+                    </div>
+                    <div class="reveal-fade-right order-1 lg:order-2">
+                        <div class="mb-12">
+                            <div class="inline-block mb-3 text-xs font-bold tracking-widest uppercase text-cream/50">Governance Advocacy</div>
+                            <h2 class="font-serif text-4xl md:text-5xl leading-tight text-white">Coordinating Progress</h2>
+                            <div class="w-16 h-1 bg-accent-green mt-6"></div>
+                        </div>
+                        <p class="text-xl text-cream/70 mb-8 leading-relaxed">
+                            Our research and field work highlight the massive potential for improved democratic outcomes when youth are at the center of political coordination.
+                        </p>
+                        <ul class="space-y-6">
+                            <li class="flex items-center gap-4 text-cream/80">
+                                <div class="w-2 h-2 rounded-full bg-accent-green"></div>
+                                <span>National & Local Level Policy Advocacy</span>
+                            </li>
+                            <li class="flex items-center gap-4 text-cream/80">
+                                <div class="w-2 h-2 rounded-full bg-accent-green"></div>
+                                <span>Meaningful Representation Strategies</span>
+                            </li>
+                            <li class="flex items-center gap-4 text-cream/80">
+                                <div class="w-2 h-2 rounded-full bg-accent-green"></div>
+                                <span>Capacity Building for Civic Changemakers</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section id="team" class="py-32 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                    <div class="reveal-fade-left">
+                        <div class="mb-12">
+                            <div class="inline-block mb-3 text-xs font-bold tracking-widest uppercase text-text-main/50">Leadership</div>
+                            <h2 class="font-serif text-4xl md:text-5xl leading-tight text-primary-green">Youth-Led Excellence</h2>
+                            <div class="w-16 h-1 bg-accent-green mt-6"></div>
+                        </div>
+                        <p class="text-lg text-text-main/70 mb-12 leading-relaxed">
+                            Samanwaya is run by young professionals who understand the challenges of the modern political landscape. We don't just talk about change; we coordinate it.
+                        </p>
+                        <div class="grid grid-cols-2 gap-8 text-left">
+                            <div class="p-8 bg-cream rounded-2xl">
+                                <h4 class="font-serif text-4xl text-primary-green mb-2">100%</h4>
+                                <p class="text-xs font-bold uppercase tracking-widest text-text-main/40">Youth Operated</p>
+                            </div>
+                            <div class="p-8 bg-cream rounded-2xl">
+                                <h4 class="font-serif text-4xl text-primary-green mb-2">7+</h4>
+                                <p class="text-xs font-bold uppercase tracking-widest text-text-main/40">Provinces Reached</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reveal-fade-right relative rounded-3xl overflow-hidden shadow-2xl h-[600px] border border-stone-200">
+                        <div id="coordination-scene" class="absolute inset-0 z-0"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary-green to-transparent opacity-60"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-12 z-10 text-white">
+                            <p class="font-serif text-2xl italic mb-4">" Democracy is not just a system of governance, but a culture of coordination."</p>
+                            <span class="text-sm font-bold tracking-[0.3em] uppercase opacity-60">— Samanwaya Philosophy</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mountain Gallery Section -->
+        <section class="py-32 bg-cream overflow-hidden">
+            <div class="container mx-auto px-6 mb-16 text-center reveal-fade-up">
+                <div class="inline-block mb-3 text-xs font-bold tracking-widest uppercase text-text-main/50">Our Heritage</div>
+                <h2 class="font-serif text-4xl md:text-5xl text-primary-green">The Mountains of Nepal</h2>
+                <div class="w-16 h-1 bg-accent-green mt-6 mx-auto"></div>
+            </div>
+            <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="reveal-fade-up h-64 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all">
+                    <img src="https://picsum.photos/seed/himalayas1/800/600" alt="Everest" class="w-full h-full object-cover" />
+                </div>
+                <div class="reveal-fade-up h-64 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all" style="transition-delay: 0.1s">
+                    <img src="https://picsum.photos/seed/himalayas2/800/600" alt="Annapurna" class="w-full h-full object-cover" />
+                </div>
+                <div class="reveal-fade-up h-64 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all" style="transition-delay: 0.2s">
+                    <img src="https://picsum.photos/seed/himalayas3/800/600" alt="Manaslu" class="w-full h-full object-cover" />
+                </div>
+                <div class="reveal-fade-up h-64 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all" style="transition-delay: 0.3s">
+                    <img src="https://picsum.photos/seed/himalayas4/800/600" alt="Lhotse" class="w-full h-full object-cover" />
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-32 bg-cream relative">
+            <div class="container mx-auto px-6 reveal-fade-up">
+                <div class="bg-white rounded-[3rem] shadow-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-12">
+                    <div class="lg:col-span-5 bg-primary-green p-12 lg:p-20 text-cream flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-serif text-4xl mb-6">Let's coordinate for a stronger Nepal.</h3>
+                            <p class="text-cream/60 mb-12">Whether you're a youth leader, a donor, or a fellow advocate, we'd love to hear from you.</p>
+                            
+                            <div class="space-y-8 text-left">
+                                <div class="flex items-center gap-6">
+                                    <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-accent-green"><i data-lucide="mail"></i></div>
+                                    <div>
+                                        <p class="text-[10px] uppercase tracking-widest text-cream/30 font-bold">Email</p>
+                                        <p class="font-medium">contact@samanwaya.org.np</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-6">
+                                    <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-accent-green"><i data-lucide="map-pin"></i></div>
+                                    <div>
+                                        <p class="text-[10px] uppercase tracking-widest text-cream/30 font-bold">Location</p>
+                                        <p class="font-medium">Kathmandu, Nepal</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-6">
+                                    <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-accent-green"><i data-lucide="phone"></i></div>
+                                    <div>
+                                        <p class="text-[10px] uppercase tracking-widest text-cream/30 font-bold">Phone</p>
+                                        <p class="font-medium">+977 (1) 000-0000</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="lg:col-span-7 p-12 lg:p-20">
+                        <form id="contact-form" class="space-y-8">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div class="space-y-2 text-left">
+                                    <label class="text-[10px] uppercase tracking-widest font-bold text-text-main/40">Full Name</label>
+                                    <input type="text" required class="w-full bg-cream/50 border-b border-stone-200 py-3 focus:outline-none focus:border-accent-green transition-colors text-text-main font-serif text-lg" placeholder="Full Name" />
+                                </div>
+                                <div class="space-y-2 text-left">
+                                    <label class="text-[10px] uppercase tracking-widest font-bold text-text-main/40">Email Address</label>
+                                    <input type="email" required class="w-full bg-cream/50 border-b border-stone-200 py-3 focus:outline-none focus:border-accent-green transition-colors text-text-main font-serif text-lg" placeholder="Email Address" />
+                                </div>
+                            </div>
+                            <div class="space-y-2 text-left">
+                                    <label class="text-[10px] uppercase tracking-widest font-bold text-text-main/40">Message</label>
+                                    <textarea rows={4} required class="w-full bg-cream/50 border-b border-stone-200 py-3 focus:outline-none focus:border-accent-green transition-colors text-text-main font-serif text-lg resize-none" placeholder="Tell us how we can collaborate..." ></textarea>
+                            </div>
+                            <button type="submit" class="px-12 py-5 bg-primary-green text-white font-bold rounded-full hover:bg-accent-green transition-all shadow-lg hover:shadow-xl flex items-center gap-4">
+                                Send Message <i data-lucide="rocket" class="w-5 h-5"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-primary-green text-cream/40 py-24">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 border-b border-white/5 pb-20 mb-12">
+                <div class="lg:col-span-5 text-left">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-accent-green font-serif font-bold text-3xl shadow-sm transform rotate-6">S</div>
+                        <div class="flex flex-col">
+                            <span class="font-serif font-bold text-2xl tracking-wide text-white uppercase leading-none mb-1">Samanwaya Nepal</span>
+                            <span class="text-[10px] font-bold text-accent-green uppercase tracking-[0.4em]">समन्वय नेपाल</span>
+                        </div>
+                    </div>
+                    <p class="text-cream/60 text-lg leading-relaxed mb-8 max-w-sm">
+                        Strengthening democratic processes and political coordination for a more inclusive Nepal.
+                    </p>
+                    <div class="flex items-center gap-5">
+                        <a href="https://www.linkedin.com/company/samanwaya" target="_blank" class="p-3 bg-white/5 rounded-full hover:bg-accent-green hover:text-white transition-all"><i data-lucide="linkedin"></i></a>
+                        <a href="https://x.com/samanwaya_np" target="_blank" class="p-3 bg-white/5 rounded-full hover:bg-accent-green hover:text-white transition-all"><i data-lucide="twitter"></i></a>
+                        <a href="https://www.instagram.com/samanwaya.np/" target="_blank" class="p-3 bg-white/5 rounded-full hover:bg-accent-green hover:text-white transition-all"><i data-lucide="instagram"></i></a>
+                        <a id="admin-link" href="/admin" class="p-3 bg-white/5 rounded-full hover:bg-accent-green hover:text-white transition-all" title="Admin Panel"><i data-lucide="shield"></i></a>
+                    </div>
+                </div>
+                
+                <div class="lg:col-span-7 grid grid-cols-2 md:grid-cols-4 gap-12 text-left">
+                    <div class="col-span-1">
+                        <h5 class="font-black text-[10px] uppercase tracking-[0.3em] mb-8 text-accent-green leading-none">Organization</h5>
+                        <ul class="space-y-4 text-sm font-medium text-cream/70">
+                            <li><a href="#about" class="hover:text-accent-green transition-colors">Our Mission</a></li>
+                            <li><a href="#team" class="hover:text-accent-green transition-colors">Team Members</a></li>
+                            <li><a href="#representation" class="hover:text-accent-green transition-colors">Reports</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-span-1">
+                        <h5 class="font-black text-[10px] uppercase tracking-[0.3em] mb-8 text-accent-green leading-none">Programs</h5>
+                        <ul class="space-y-4 text-sm font-medium text-cream/70">
+                            <li><a href="#" class="hover:text-accent-green transition-colors">Youth Dialogue</a></li>
+                            <li><a href="#" class="hover:text-accent-green transition-colors">Women in Law</a></li>
+                            <li><a href="#" class="hover:text-accent-green transition-colors">Child Rights</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-span-2 md:col-span-1">
+                        <h5 class="font-black text-[10px] uppercase tracking-[0.3em] mb-8 text-accent-green leading-none">Social</h5>
+                        <ul class="space-y-4 text-sm font-medium text-cream/70">
+                            <li><a href="https://www.tiktok.com/@samanwaya.np" target="_blank" class="hover:text-accent-green transition-colors">TikTok</a></li>
+                            <li><a href="https://www.youtube.com/@samanwaya_np" target="_blank" class="hover:text-accent-green transition-colors">YouTube</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] font-black uppercase tracking-[0.2em]">
+                <p>© 2024 Samanwaya Nepal. All Rights Reserved.</p>
+                <div class="flex items-center gap-2">
+                   Coordinating for a <span class="text-accent-green">Stronger Democracy</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="/main.js"></script>
 </body>
 </html>
