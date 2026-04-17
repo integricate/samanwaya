@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Admin Dashboard - Samanwaya</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="admin-dashboard">
+    <header class="admin-header">
+        <div class="container">
+            <h1>Admin Dashboard</h1>
+            <nav class="admin-nav">
+                <a href="dashboard.html" class="active">Dashboard</a>
+                <a href="manage-events.html">Manage Events</a>
+                <a href="manage-news.html">Manage News</a>
+                <a href="#" onclick="logout()">Logout</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="admin-content">
+        <div class="container">
+            <div class="admin-card">
+                <h2>Welcome to Admin Dashboard</h2>
+                <p id="welcomeMessage"></p>
+                
+                <div style="margin-top: 30px;">
+                    <h3>Quick Actions</h3>
+                    <div style="display: flex; gap: 15px; margin-top: 20px; flex-wrap: wrap;">
+                        <a href="manage-events.html" class="btn btn-secondary">Manage Events</a>
+                        <a href="manage-news.html" class="btn btn-secondary">Manage News</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-card">
+                <h3>System Information</h3>
+                <p>This is a static website hosted on GitHub Pages. All data is stored in the browser's localStorage.</p>
+                <p style="margin-top: 10px;"><strong>Note:</strong> For security reasons, this client-side authentication is suitable for demonstration purposes. For production use, consider implementing server-side authentication.</p>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const user = getCurrentUser();
+            if (user) {
+                document.getElementById('welcomeMessage').textContent = 
+                    `Logged in as: ${user.username} (${user.role})`;
+            }
+        });
+    </script>
+</body>
+</html>

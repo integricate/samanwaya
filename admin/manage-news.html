@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Manage News - Samanwaya Admin</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="admin-dashboard">
+    <header class="admin-header">
+        <div class="container">
+            <h1>Admin Dashboard</h1>
+            <nav class="admin-nav">
+                <a href="dashboard.html">Dashboard</a>
+                <a href="manage-events.html">Manage Events</a>
+                <a href="manage-news.html" class="active">Manage News</a>
+                <a href="#" onclick="logout()">Logout</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="admin-content">
+        <div class="container">
+            <div class="admin-card">
+                <h2>Manage Daily News</h2>
+                <p>Add or update daily news articles for the website.</p>
+                
+                <div id="messageArea" style="margin-top: 20px;"></div>
+                
+                <form id="newsForm" style="margin-top: 30px;">
+                    <input type="hidden" id="newsId">
+                    <div class="form-group">
+                        <label for="newsTitle">News Title</label>
+                        <input type="text" id="newsTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="newsContent">News Content</label>
+                        <textarea id="newsContent" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-secondary">Publish News</button>
+                    <button type="button" class="btn btn-primary" onclick="resetNewsForm()" style="margin-left: 10px;">Cancel</button>
+                </form>
+            </div>
+
+            <div class="admin-card">
+                <h3>Published News</h3>
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Date Published</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="newsTableBody">
+                        <!-- News will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/auth.js"></script>
+    <script src="../js/manage-news.js"></script>
+</body>
+</html>

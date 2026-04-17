@@ -1,0 +1,23 @@
+{
+  "name": "samanwaya-website",
+  "version": "1.0.0",
+  "description": "Samanwaya - Youth-led organization website for democracy and civic engagement in Nepal",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"No tests specified\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/username/samanwaya.git"
+  },
+  "keywords": [
+    "samanwaya",
+    "nepal",
+    "youth",
+    "democracy",
+    "civic-engagement",
+    "kathmandu"
+  ],
+  "author": "Samanwaya",
+  "license": "MIT"
+}
